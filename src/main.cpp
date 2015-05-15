@@ -48,7 +48,7 @@
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
-    app.setApplicationName("cube");
+    app.setApplicationName("Progress");
     app.setApplicationVersion("0.1");
 #ifndef QT_NO_OPENGL
     MainWidget widget;

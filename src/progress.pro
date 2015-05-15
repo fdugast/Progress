@@ -23,3 +23,7 @@ qtHaveModule(opengl) {
 # install
 #target.path = $$[QT_INSTALL_EXAMPLES]/opengl/cube
 INSTALLS += target
+
+contains(ANDROID_TARGET_ARCH,armeabi-v7a) {
+    ANDROID_EXTRA_LIBS =
+}

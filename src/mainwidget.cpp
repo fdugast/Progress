@@ -86,7 +86,7 @@ void MainWidget::mouseReleaseEvent(QMouseEvent *e)
 void MainWidget::timerEvent(QTimerEvent *)
 {
     // Decrease angular speed (friction)
-    angularSpeed *= 0.99;
+    angularSpeed *= 0.90;
 
     // Stop rotation when speed goes below threshold
     if (angularSpeed < 0.01) {
@@ -160,6 +160,13 @@ void MainWidget::initTextures()
     // f.ex. texture coordinate (1.1, 1.2) is same as (0.1, 0.2)
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
+    // use linear filetring
+    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
+    // clamp to edge
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 }
 //! [4]
 
