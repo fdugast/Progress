@@ -59,7 +59,7 @@ MainWidget::~MainWidget()
 void MainWidget::mousePressEvent(QMouseEvent *e)
 {
     // Save mouse press position
-#if QT_VERSION <= 0x040704
+#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
     mousePressPosition = QVector2D(e->pos());
 #else
     mousePressPosition = QVector2D(e->localPos());
@@ -69,7 +69,7 @@ void MainWidget::mousePressEvent(QMouseEvent *e)
 void MainWidget::mouseReleaseEvent(QMouseEvent *e)
 {
     // Mouse release position - mouse press position
-#if QT_VERSION <= 0x040704
+#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
     QVector2D diff = QVector2D(e->pos()) - mousePressPosition;
 #else
     QVector2D diff = QVector2D(e->localPos()) - mousePressPosition;
@@ -111,7 +111,7 @@ void MainWidget::timerEvent(QTimerEvent *)
 
 void MainWidget::initializeGL()
 {
-#if QT_VERSION <= 0x040704
+#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
 #else
     initializeGLFunctions();
 #endif

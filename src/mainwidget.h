@@ -44,6 +44,9 @@
 #include "geometryengine.h"
 
 #if defined(Q_OS_SYMBIAN)
+#include <QtOpenGL/QGLWidget>
+#include <QtOpenGL/QGLFunctions>
+#include <QtOpenGL/QGLShaderProgram>
 #else
 #include <QGLWidget>
 #include <QGLFunctions>
@@ -56,7 +59,7 @@
 
 class GeometryEngine;
 
-#if QT_VERSION <= 0x040704
+#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
 class MainWidget : public QGLWidget
 #else
 class MainWidget : public QGLWidget, protected QGLFunctions
