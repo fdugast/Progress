@@ -43,9 +43,9 @@
 
 #include "geometryengine.h"
 
-#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
+#include <Qt>
+#if (QT_VERSION < 0x50000)
 #include <QtOpenGL/QGLWidget>
-#include <QtOpenGL/QGLFunctions>
 #include <QtOpenGL/QGLShaderProgram>
 #else
 #include <QGLWidget>
@@ -59,7 +59,7 @@
 
 class GeometryEngine;
 
-#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
+#if (QT_VERSION < 0x50000)
 class MainWidget : public QGLWidget
 #else
 class MainWidget : public QGLWidget, protected QGLFunctions

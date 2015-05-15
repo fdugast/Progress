@@ -41,16 +41,15 @@
 #ifndef GEOMETRYENGINE_H
 #define GEOMETRYENGINE_H
 
-#include <QtGlobal>
-#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
+#include <Qt>
+#if (QT_VERSION < 0x50000)
 #include <QtOpenGL/QGLShaderProgram>
-#include <QtOpenGL/QGLFunctions>
 #else
 #include <QGLFunctions>
 #include <QGLShaderProgram>
 #endif
 
-#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
+#if (QT_VERSION < 0x50000)
 class GeometryEngine
 #else
 class GeometryEngine : protected QGLFunctions
