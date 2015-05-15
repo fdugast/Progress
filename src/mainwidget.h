@@ -43,7 +43,7 @@
 
 #include "geometryengine.h"
 
-#if defined(Q_OS_SYMBIAN)
+#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
 #include <QtOpenGL/QGLWidget>
 #include <QtOpenGL/QGLFunctions>
 #include <QtOpenGL/QGLShaderProgram>
