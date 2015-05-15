@@ -60,7 +60,10 @@ GeometryEngine::~GeometryEngine()
 
 void GeometryEngine::init()
 {
+#if QT_VERSION <= 0x040704
+#else
     initializeGLFunctions();
+#endif
 
 //! [0]
     // Generate 2 VBOs

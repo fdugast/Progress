@@ -5,7 +5,7 @@ TEMPLATE = app
 
 SOURCES += main.cpp
 
-qtHaveModule(opengl) {
+#qtHaveModule(opengl) {
     QT += opengl
 
     SOURCES += mainwidget.cpp \
@@ -18,7 +18,7 @@ qtHaveModule(opengl) {
     RESOURCES += \
         shaders.qrc \
         textures.qrc
-}
+#}
 
 # install
 #target.path = $$[QT_INSTALL_EXAMPLES]/opengl/cube

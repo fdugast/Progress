@@ -43,18 +43,24 @@
 
 #include "geometryengine.h"
 
+#if defined(Q_OS_SYMBIAN)
+#else
 #include <QGLWidget>
 #include <QGLFunctions>
+#include <QGLShaderProgram>
+#endif
 #include <QMatrix4x4>
 #include <QQuaternion>
 #include <QVector2D>
 #include <QBasicTimer>
-#include <QGLShaderProgram>
-
 
 class GeometryEngine;
 
+#if QT_VERSION <= 0x040704
+class MainWidget : public QGLWidget
+#else
 class MainWidget : public QGLWidget, protected QGLFunctions
+#endif
 {
     Q_OBJECT
 

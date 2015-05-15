@@ -59,13 +59,21 @@ MainWidget::~MainWidget()
 void MainWidget::mousePressEvent(QMouseEvent *e)
 {
     // Save mouse press position
+#if QT_VERSION <= 0x040704
+    mousePressPosition = QVector2D(e->pos());
+#else
     mousePressPosition = QVector2D(e->localPos());
+#endif
 }
 
 void MainWidget::mouseReleaseEvent(QMouseEvent *e)
 {
     // Mouse release position - mouse press position
+#if QT_VERSION <= 0x040704
+    QVector2D diff = QVector2D(e->pos()) - mousePressPosition;
+#else
     QVector2D diff = QVector2D(e->localPos()) - mousePressPosition;
+#endif
 
     // Rotation axis is perpendicular to the mouse position difference
     // vector
@@ -86,7 +94,7 @@ void MainWidget::mouseReleaseEvent(QMouseEvent *e)
 void MainWidget::timerEvent(QTimerEvent *)
 {
     // Decrease angular speed (friction)
-    angularSpeed *= 0.90;
+    angularSpeed *= 0.99;
 
     // Stop rotation when speed goes below threshold
     if (angularSpeed < 0.01) {
@@ -103,7 +111,10 @@ void MainWidget::timerEvent(QTimerEvent *)
 
 void MainWidget::initializeGL()
 {
+#if QT_VERSION <= 0x040704
+#else
     initializeGLFunctions();
+#endif
     qglClearColor(Qt::black);
     initShaders();
     initTextures();

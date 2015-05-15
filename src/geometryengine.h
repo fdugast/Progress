@@ -41,10 +41,18 @@
 #ifndef GEOMETRYENGINE_H
 #define GEOMETRYENGINE_H
 
+#if QT_VERSION <= 0x040704
+#include <QtOpenGL/QGLShaderProgram>
+#else
 #include <QGLFunctions>
 #include <QGLShaderProgram>
+#endif
 
+#if QT_VERSION <= 0x040704
+class GeometryEngine
+#else
 class GeometryEngine : protected QGLFunctions
+#endif
 {
 public:
     GeometryEngine();
