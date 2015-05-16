@@ -24,7 +24,3 @@ This is a standard Qt project with no extra dependency. It can be built within Q
 * `$ cd src/`
 * `$ qmake progress.pro`
 * `$ make`
-
-
-
-- in the deployment configuration, add the extra library liQtOpenGL
