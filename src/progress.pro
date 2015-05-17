@@ -1,9 +1,11 @@
-QT       += core gui widgets
+QT       += core gui widgets positioning
 
 TARGET = progress
 TEMPLATE = app
 
-SOURCES += main.cpp
+SOURCES += main.cpp \
+    mainwindow.cpp \
+    starterform.cpp
 
 #qtHaveModule(opengl) {
     QT += opengl
@@ -13,7 +15,9 @@ SOURCES += main.cpp
 
     HEADERS += \
         mainwidget.h \
-        geometryengine.h
+        geometryengine.h \
+    mainwindow.h \
+    starterform.h
 
     RESOURCES += \
         shaders.qrc \
@@ -27,3 +31,13 @@ INSTALLS += target
 contains(ANDROID_TARGET_ARCH,armeabi-v7a) {
     ANDROID_EXTRA_LIBS =
 }
+
+FORMS += \
+    mainwindow.ui \
+    starterform.ui
+
+symbian:TARGET.CAPABILITY += NetworkServices Location
+
+MOBILITY += location systeminfo
+
+CONFIG += mobility

@@ -79,6 +79,7 @@ protected:
     void initializeGL();
     void resizeGL(int w, int h);
     void paintGL();
+    void paintEvent(QPaintEvent *event);
 
     void initShaders();
     void initTextures();
@@ -96,6 +97,10 @@ private:
     QVector3D rotationAxis;
     qreal angularSpeed;
     QQuaternion rotation;
+
+    void drawLegend();
+    void drawOpenGL();
+    void drawInstructions(QPainter *painter);
 };
 
 #endif // MAINWIDGET_H

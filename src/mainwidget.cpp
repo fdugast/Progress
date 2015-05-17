@@ -46,8 +46,11 @@
 
 MainWidget::MainWidget(QWidget *parent) :
     QGLWidget(parent),
-    angularSpeed(0)
+    angularSpeed(0.8)
 {
+    rotationAxis = QVector3D(0, 1, 0);
+    this->setAutoFillBackground(false);
+//    this->setAutoBufferSwap(false);
 }
 
 MainWidget::~MainWidget()
@@ -94,7 +97,7 @@ void MainWidget::mouseReleaseEvent(QMouseEvent *e)
 void MainWidget::timerEvent(QTimerEvent *)
 {
     // Decrease angular speed (friction)
-    angularSpeed *= 0.99;
+    //angularSpeed *= 0.99;
 
     // Stop rotation when speed goes below threshold
     if (angularSpeed < 0.01) {
@@ -178,6 +181,8 @@ void MainWidget::initTextures()
     // clamp to edge
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
+//    glEnable(GL_MULTISAMPLE);
 }
 //! [4]
 
@@ -200,9 +205,67 @@ void MainWidget::resizeGL(int w, int h)
     projection.perspective(fov, aspect, zNear, zFar);
 }
 //! [5]
+//!
+void MainWidget::drawLegend()
+{
+/*    QString text = tr("Click and drag with the left mouse button "
+                      "to rotate the Qt logo.");
+    QFontMetrics metrics = QFontMetrics(font());
+    int border = qMax(4, metrics.leading());
+
+    QRect rect = metrics.boundingRect(0, 0, width() - 2*border, int(height()*0.125),
+                                      Qt::AlignCenter | Qt::TextWordWrap, text);
+    painter->setRenderHint(QPainter::TextAntialiasing);
+    painter->fillRect(QRect(0, 0, width(), rect.height() + 2*border),
+                     QColor(0, 0, 0, 127));
+    painter->setPen(Qt::white);
+    painter->fillRect(QRect(0, 0, width(), rect.height() + 2*border),
+                      QColor(0, 0, 0, 127));
+    painter->drawText((width() - rect.width())/2, border,
+                      rect.width(), rect.height(),
+                      Qt::AlignCenter | Qt::TextWordWrap, text);*/
+    QPainter painter(this);
+    painter.setPen(Qt::red);
+    painter.fillRect(QRect(0, 0, 100, 100),
+                      Qt::red);
+    painter.end();
+
+}
+
+void MainWidget::paintEvent(QPaintEvent *event)
+{
+//    makeCurrent();
+//    drawOpenGL();
+
+
+   QGLWidget::paintEvent(event);
+//    drawLegend();
+    //    QPainter painter(this);
+//    painter.end();
+
+//drawOpenGL();
+/*    glMatrixMode(GL_MODELVIEW);
+    glPushMatrix();
+    drawOpenGL();
+    glMatrixMode(GL_MODELVIEW);
+    glPopMatrix();
+*/
+/*    QPainter painter(this);
+    drawInstructions(&painter);
+    painter.end();
+*/}
+
+/*void MainWidget::drawOpenGL()
+{
+
+}*/
 
 void MainWidget::paintGL()
+//void MainWidget::paintGL()
 {
+    //QPainter painter(this);
+
+//    swapBuffers();
     // Clear color and depth buffer
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -221,4 +284,38 @@ void MainWidget::paintGL()
 
     // Draw cube geometry
     geometries.drawCubeGeometry(&program);
+
+
+
+//    setFont(QFont("Times", 24));
+    //qglColor(QColor(255, 223, 127));
+
+  //renderText(+1.1, +1.1, +1.1, QChar('a'));
+
+    //QPainter painter(this);
+    //painter.setRenderHint(QPainter::Antialiasing);
+    //drawText(&painter);
+    //painter.end();
+
+    //swapBuffers();
+}
+
+void MainWidget::drawInstructions(QPainter *painter)
+{
+    QString text = tr("Click and drag with the left mouse button "
+                      "to rotate the Qt logo.");
+    QFontMetrics metrics = QFontMetrics(font());
+    int border = qMax(4, metrics.leading());
+
+    QRect rect = metrics.boundingRect(0, 0, width() - 2*border, int(height()*0.125),
+                                      Qt::AlignCenter | Qt::TextWordWrap, text);
+    painter->setRenderHint(QPainter::TextAntialiasing);
+    painter->fillRect(QRect(0, 0, width(), rect.height() + 2*border),
+                     QColor(0, 0, 0, 127));
+    painter->setPen(Qt::white);
+    painter->fillRect(QRect(0, 0, width(), rect.height() + 2*border),
+                      QColor(0, 0, 0, 127));
+    painter->drawText((width() - rect.width())/2, border,
+                      rect.width(), rect.height(),
+                      Qt::AlignCenter | Qt::TextWordWrap, text);
 }
