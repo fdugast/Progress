@@ -5,6 +5,10 @@
 #include <QGeoPositionInfo>
 #include <QGeoPositionInfoSource>
 
+#if (QT_VERSION < 0x50000)
+QTM_USE_NAMESPACE
+#endif
+
 namespace Ui {
 class StarterForm;
 }
