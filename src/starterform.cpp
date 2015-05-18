@@ -38,8 +38,8 @@ void StarterForm::on_startButton_clicked()
 {
     qDebug() << "coucou";
     emit sendMessage(QString("message"));
-    ui->topWidgets->removeWidget(ui->logger);
-    ui->topWidgets->removeWidget(ui->startButton);
+    //ui->topWidgets->removeWidget(ui->logger);
+    //ui->topWidgets->removeWidget(ui->startButton);
 }
 
 void StarterForm::log(const QString &message)
@@ -57,7 +57,7 @@ void StarterForm::startLocationAPI()
  QGeoPositionInfoSource::createDefaultSource(this);
 
  //Select positioning method
- m_pLocationInfo->setPreferredPositioningMethods(QGeoPositionInfoSource::NonSatellitePositioningMethods);
+ m_pLocationInfo->setPreferredPositioningMethods(QGeoPositionInfoSource::AllPositioningMethods);
 
  // When the position is changed the positionUpdated function is called
  connect(m_pLocationInfo, SIGNAL (positionUpdated(QGeoPositionInfo)),

@@ -163,6 +163,7 @@ void MainWidget::initTextures()
     // Load cube.png image
     glEnable(GL_TEXTURE_2D);
     texture = bindTexture(QImage(":/cube.png"));
+//    texture = bindTexture(QImage(":/map.png"));
 
     // Set nearest filtering mode for texture minification
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
