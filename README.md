@@ -2,7 +2,7 @@
 
 ## Presentation
 
-Progress is an open version of the popular MMORPG Ingress.
+Progress is an open version of the popular augmented reality MMORPG Ingress.
 
 ## Supported Qt versions
 
